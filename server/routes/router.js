@@ -14,11 +14,11 @@ routerlist.route("/login").post(authController.login);
 
 
 // group controller
-routerlist.route("/admin/createGroup").post(groupController.createGroup);
-routerlist.route("/addGroupMember").post(groupController.addGroupMember);
+routerlist.route("/admin/createGroup").post(auth('adminrights'), groupController.createGroup);
+routerlist.route("/addGroupMember").post(auth('adminrights'), groupController.addGroupMember);
 
 // message Controller
-routerlist.route("/getgroupmessage").post(messageController.GetGroupMessage);
-routerlist.route("/sendmessage").post(messageController.sendMessage);
+// routerlist.route("/getgroupmessage").post(messageController.GetGroupMessage);
+// routerlist.route("/sendmessage").post(messageController.sendMessage);
 
 module.exports = routerlist;

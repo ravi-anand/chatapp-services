@@ -12,7 +12,7 @@ const verifyToken = (...userrights) => (req, res, next) => {
     return res.status(403).send("A token is required for authentication");
   }
   try {
-    let accessrights = (userrights === adminrights) ? adminrights : (userrights === normalrights) ? normalrights : allrights;
+    let accessrights = (userrights === 'adminrights') ? adminrights : (userrights === 'normalrights') ? normalrights : allrights;
     const decoded = jwt.verify(token, config.TOKEN_KEY);
     if(!accessrights.includes(decoded.role)) {
         return res.status(403).send("Unauthorized");

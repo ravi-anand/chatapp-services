@@ -81,6 +81,23 @@ const sendMessage = async (req, res) => {
 
 const likeMessage = async (req, res) => {
   try {
+    const { messageid, userid } = req.body;
+
+    if (!(messageid && userid)) {
+      return res.status(400).send("All input is required: messageid, userid");
+    }
+    let createdat = moment().format('DD-MM-YYYY HH:mm:ss')
+    let messageLiked = await Message.create({
+        messageid: messageid,
+        likestatus: 1,
+        userid: userid,
+        createdat: createdat
+    })
+    let result = {
+        message : "Message Liked Successfully",
+        messagecreated: messageLiked
+    }
+    return res.status(200).json(result);
   } catch (error) {
     console.log(error);
   }
@@ -88,5 +105,6 @@ const likeMessage = async (req, res) => {
 
 module.exports = {
     GetGroupMessage,
-    sendMessage
+    sendMessage,
+    likeMessage
 }
