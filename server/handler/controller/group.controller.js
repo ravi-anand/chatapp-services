@@ -8,7 +8,8 @@ const createGroup = async (req, res) => {
     const { groupname, createdby } = req.body;
 
     if (!(groupname && createdby)) {
-      return res.status(400).send("All input is required: groupname, createdby");
+      let response = await resObject.responseobject(400,"/group/creategroup", "All input is required: groupname, createdby", {})
+      return res.status(400).json(response);
     }
 
     let createdat = moment().format('DD-MM-YYYY HH:mm:ss')
@@ -24,13 +25,12 @@ const createGroup = async (req, res) => {
         createdat: createdat,
         status: 1
     })
-    let result = {
-        message : "Group Created Successfully",
-        groupdetails : groupmaster
-    }
-      return res.status(200).json(result);
+    let response = await resObject.responseobject(200,"/group/creategroup", "Group Created Successfully", groupmaster)
+    return res.status(200).json(response);
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/group/creategroup", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 
@@ -39,7 +39,8 @@ const addGroupMember = async (req, res) => {
     const { groupid, userid } = req.body;
 
     if (!(groupid && userid)) {
-      return res.status(400).send("All input is required: groupid, userid");
+      let response = await resObject.responseobject(400,"/group/addgroupmember", "All input is required: groupid, userid", {})
+      return res.status(400).json(response);
     }
 
     const usercheck = await Groupmembers.findOne({ 
@@ -48,7 +49,8 @@ const addGroupMember = async (req, res) => {
     });
 
     if (usercheck) {
-      return res.status(409).send("User Already Exist in the group");
+      let response = await resObject.responseobject(409,"/group/addgroupmember", "User Already Exist in the group", {})
+      return res.status(409).json(response);
     }
 
     let createdat = moment().format('DD-MM-YYYY HH:mm:ss')
@@ -59,14 +61,13 @@ const addGroupMember = async (req, res) => {
         createdat: createdat,
         status: 1
     })
-    let result = {
-        message : "USer added Successfully",
-        groupmember: groupmember
-    }
-    return res.status(200).json(result);
+    let response = await resObject.responseobject(200,"/group/addgroupmember", "USer added Successfully", groupmember)
+    return res.status(200).json(response);
 
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/group/addgroupmember", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 
@@ -74,6 +75,8 @@ const deleteGroup = async (req, res) => {
   try {
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/group/deletegroup", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 
@@ -83,20 +86,20 @@ const getGroupMember = async (req, res) => {
     const { groupid } = req.body;
 
     if (!(groupid)) {
-      return res.status(400).send("All input is required: groupid");
+      let response = await resObject.responseobject(400,"/group/getgroupmember", "All input is required: groupid", {})
+      return res.status(400).json(response);
     }
 
     const groupMemberlist = await Groupmembers.find({ 
         groupid: groupid
     });
-    let result = {
-      message : "USer added Successfully",
-      groupmember: groupMemberlist
-  }
-  return res.status(200).json(result);
+  let response = await resObject.responseobject(200,"/group/getgroupmember", "USer added Successfully", groupMemberlist)
+  return res.status(200).json(response);
   
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/group/getgroupmember", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 
@@ -105,7 +108,8 @@ const getGroupList = async (req, res) => {
     const { userid } = req.body;
 
     if (!(userid)) {
-      return res.status(400).send("All input is required: userid");
+      let response = await resObject.responseobject(400,"/group/getgrouplist", "All input is required: userid", {})
+      return res.status(400).json(response);
     }
 
     const grouplist = await Groupmembers.find({ 
@@ -126,13 +130,12 @@ const getGroupList = async (req, res) => {
         }
       }
     ])
-    let result = {
-      message : "Successfull",
-      grouplist: groups,
-  }
-  return res.status(200).json(result);
+  let response = await resObject.responseobject(200,"/group/getgrouplist", "Successfull", groups)
+  return res.status(200).json(response);
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/group/getgrouplist", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 

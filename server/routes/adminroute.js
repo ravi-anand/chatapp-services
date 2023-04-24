@@ -10,7 +10,7 @@ const adminrouter = express.Router();
 // admin controller
 adminrouter.route("/createuser").post(auth('adminrights'), adminController.createuser);
 adminrouter.route("/edituser").post(auth('adminrights'), adminController.edituser);
-adminrouter.route("/getuserlist").post(auth('adminrights'), userController.getUserList);
+adminrouter.route("/getuserlist").post(auth('allrights'), userController.getUserList);
 
 
 module.exports = adminrouter;

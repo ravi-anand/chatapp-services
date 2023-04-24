@@ -40,6 +40,15 @@ const responseobject = async (code, endpoint, message, data) => {
           endpoint: endpoint,
         };
         break;
+      case 403:
+        res = {
+          code: code,
+          status: "Conflict",
+          message: resMessage,
+          data: resdata,
+          endpoint: endpoint,
+        };
+        break;
       case 409:
         res = {
           code: code,

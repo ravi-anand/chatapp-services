@@ -4,13 +4,15 @@ const Groupmaster = require("../../model/groupmaster");
 const Groupmembers = require("../../model/groupmembers");
 const Message = require("../../model/groupmessage");
 const Like = require("../../model/grouplike");
+const resObject = require('../common/commonfunction');
 
 const GetGroupMessage = async (req, res) => {
   try {
     const { groupid } = req.body;
 
     if (!groupid) {
-      return res.status(400).send("All input is required: groupid");
+      let response = await resObject.responseobject(400,"/group/getgroupmessage", "All input is required: groupid", {})
+      return res.status(400).json(response);
     }
     let message = await Message.aggregate([
       {
@@ -42,14 +44,12 @@ const GetGroupMessage = async (req, res) => {
         }
       }
     ]);
-    // let message = await Message.find({ groupid: groupid });
-    let result = {
-      message: "Message fetch Successfully",
-      message: message,
-    };
-    return res.status(200).json(result);
+    let response = await resObject.responseobject(200,"/group/getgroupmessage", "Message fetch Successfully", message)
+    return res.status(200).json(response);
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/group/getgroupmessage", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 
@@ -59,7 +59,8 @@ const sendMessage = async (req, res) => {
     const { groupid, message, userid } = req.body;
 
     if (!(groupid && message && userid)) {
-      return res.status(400).send("All input is required: groupid, message, userid");
+      let response = await resObject.responseobject(400,"/group/sendmessage", "All input is required: groupid, message, userid", {})
+      return res.status(400).json(response);
     }
     let createdat = moment().format('DD-MM-YYYY HH:mm:ss')
     let messagecreated = await Message.create({
@@ -69,13 +70,12 @@ const sendMessage = async (req, res) => {
         createdat: createdat,
         status: 1
     })
-    let result = {
-        message : "Message Sent Successfully",
-        messagecreated: messagecreated
-    }
-    return res.status(200).json(result);
+    let response = await resObject.responseobject(200,"/group/sendmessage", "Message Sent Successfully", messagecreated)
+    return res.status(200).json(response);
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/group/sendmessage", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 
@@ -84,22 +84,22 @@ const likeMessage = async (req, res) => {
     const { messageid, userid } = req.body;
 
     if (!(messageid && userid)) {
-      return res.status(400).send("All input is required: messageid, userid");
+      let response = await resObject.responseobject(400,"/group/likemessage", "All input is required: messageid, userid", {})
+      return res.status(400).json(response);
     }
     let createdat = moment().format('DD-MM-YYYY HH:mm:ss')
-    let messageLiked = await Message.create({
+    let messageLiked = await Like.create({
         messageid: messageid,
         likestatus: 1,
         userid: userid,
         createdat: createdat
     })
-    let result = {
-        message : "Message Liked Successfully",
-        messagecreated: messageLiked
-    }
-    return res.status(200).json(result);
+    let response = await resObject.responseobject(200,"/group/likemessage", "Message Liked Successfully", messageLiked)
+    return res.status(200).json(response);
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/group/likemessage", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 

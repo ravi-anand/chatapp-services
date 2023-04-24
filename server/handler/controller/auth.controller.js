@@ -42,7 +42,7 @@ const register = async (req, res) => {
     return res.status(201).json(response);
   } catch (err) {
     console.log(err);
-    let response = await resObject.responseobject(500,"/api/login", "Something Went wrong", {})
+    let response = await resObject.responseobject(500,"/api/register", "Something Went wrong", {})
     return res.status(500).json(response);
   }
 };
@@ -83,7 +83,7 @@ const logout = async (req, res) => {
   try {
   } catch (err) {
     console.log(err);
-    let response = await resObject.responseobject(500,"/api/login", "Something Went wrong", {})
+    let response = await resObject.responseobject(500,"/api/logout", "Something Went wrong", {})
     return res.status(500).json(response);
   }
 };

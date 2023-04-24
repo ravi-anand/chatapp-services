@@ -16,17 +16,20 @@ const createuser = async (req, res) => {
     if (
       !(email && password && firstName && lastName && role)
     ) {
-      return res.status(400).send("All input is required: firstName, lastName, email, password, role");
+      let response = await resObject.responseobject(400,"/admin/createuser", "All input is required: firstName, lastName, email, password, role", {})
+      return res.status(400).json(response);
     }
 
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
-      return res.status(409).send("User Already Exist. Please Login");
+      let response = await resObject.responseobject(409,"/admin/createuser", "User Already Exist. Please Login", {})
+      return res.status(409).json(response);
     }
     let rolelist = ['admin', 'user']
     if(!rolelist.includes(role)) {
-      return res.status(409).send("Only two roles are allowed: admin, user ");
+      let response = await resObject.responseobject(409,"/admin/createuser", "Only two roles are allowed: admin, user", {})
+      return res.status(409).json(response);
     }
 
     encryptedUserPassword = await bcrypt.hash(password, 10);
@@ -38,10 +41,12 @@ const createuser = async (req, res) => {
       password: encryptedUserPassword,
       role: role,
     });
-    let response = await resObject.responseobject(201,"/api/admin/createuser", "User Successfully Register")
+    let response = await resObject.responseobject(201,"/admin/createuser", "User Successfully Register")
     return res.status(201).json(response);
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/admin/createuser", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 
@@ -53,18 +58,21 @@ const edituser = async (req, res) => {
     if (
       !(userid && email && firstName && lastName && role)
     ) {
-      return res.status(400).send("All input is required: userid, firstName, lastName, email, role");
+      let response = await resObject.responseobject(400,"/admin/edituser", "All input is required: userid, firstName, lastName, email, role", {})
+      return res.status(400).json(response);
     }
 
     const oldUser = await User.findOne({ email });
     // console.log(oldUser, userid);
     console.log(oldUser._id.toString(), userid);
     if (oldUser && oldUser._id.toString() !== userid) {
-      return res.status(409).send("User Email Already Exist. Please use new Email");
+      let response = await resObject.responseobject(409,"/admin/edituser", "User Email Already Exist. Please use new Email", {})
+      return res.status(409).json(response);
     }
     let rolelist = ['admin', 'user']
     if(!rolelist.includes(role)) {
-      return res.status(409).send("Only two roles are allowed: admin, user ");
+      let response = await resObject.responseobject(409,"/admin/edituser", "Only two roles are allowed: admin, user", {})
+      return res.status(409).json(response);
     }
 
     const user = await User.findByIdAndUpdate(userid, {
@@ -73,10 +81,12 @@ const edituser = async (req, res) => {
       email: email.toLowerCase(),
       role: role,
     });
-    let response = await resObject.responseobject(201,"/api/admin/edit", "User Updated Successfully")
+    let response = await resObject.responseobject(201,"/admin/edituser", "User Updated Successfully")
     return res.status(201).json(response);
   } catch (error) {
     console.log(error);
+    let response = await resObject.responseobject(500,"/admin/edituser", "Something Went wrong", {})
+    return res.status(500).json(response);
   }
 };
 
