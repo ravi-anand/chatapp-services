@@ -97,6 +97,33 @@
 			"response": []
 		},
 		{
+			"name": "admin/getuserlist",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{admin_toke}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}admin/getuserlist"
+			},
+			"response": []
+		},
+		{
 			"name": "group/createGroup",
 			"request": {
 				"auth": {
@@ -255,6 +282,33 @@
 					}
 				},
 				"url": "{{baseurl}}group/getgrouplist"
+			},
+			"response": []
+		},
+		{
+			"name": "group/likemessage",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{normal_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"messageid\": \"6446b43848d6fab3c7a9272d\",\r\n    \"userid\": \"6446aa0f8d3a6fb135509b4b\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}group/likemessage"
 			},
 			"response": []
 		}

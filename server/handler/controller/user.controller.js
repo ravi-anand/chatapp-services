@@ -1,4 +1,4 @@
-const responseobject = require('../common/commonfunction')
+const resObject = require('../common/commonfunction')
 const User = require('../../model/user');
 
 const getUserList = async (req, res) => {

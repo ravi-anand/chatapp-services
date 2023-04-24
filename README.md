@@ -65,6 +65,18 @@ Package used.
 | `password` | `string` | **Required**. password |
 | `role` | `string` | **Required**. role can be admin or user |
 
+```curl
+curl --location 'localhost:4001/api/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "firstName": "User2",
+    "lastName": "2",
+    "email": "3@gmail.com",
+    "password": "1234",
+    "role": "user"
+}'
+```
+
 #### Login
 
 ```http
@@ -95,6 +107,13 @@ curl --location 'localhost:4001/api/login' \
 | :-------- | :------- | :------------------------- |
 | `       ` | `      ` | `       ` |
 
+```curl
+curl --location 'localhost:4001/admin/getuserlist' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFhMGY4ZDNhNmZiMTM1NTA5YjRiIiwiZW1haWwiOiIxQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MjM1MzAwMywiZXhwIjoxNjgyMzcxMDAzfQ.PFScaDZhPwOfPmwUqjYNJDhQrZc-FMNn0bNPq9rM-mk' \
+--header 'Content-Type: application/json' \
+--data '{}'
+```
+
 #### Create User
 
 ```https
@@ -109,6 +128,18 @@ curl --location 'localhost:4001/api/login' \
 | `password` | `string` | **Required**. password |
 | `role` | `string` | **Required**. role can be admin or user |
 
+```curl
+curl --location 'localhost:4001/admin/createuser' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFhMGY4ZDNhNmZiMTM1NTA5YjRiIiwiZW1haWwiOiIxQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MjM1MzAwMywiZXhwIjoxNjgyMzcxMDAzfQ.PFScaDZhPwOfPmwUqjYNJDhQrZc-FMNn0bNPq9rM-mk' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+     "firstName": "Ravi",
+    "lastName": "Anand",
+    "email": "user4@gmail.com",
+    "password": "1234",
+    "role": "user"
+}'
+```
 #### Edit User
 
 ```https
@@ -123,6 +154,19 @@ curl --location 'localhost:4001/api/login' \
 | `email` | `string` | **Required**. Email |
 | `role` | `string` | **Required**. role can be admin or user |
 
+```curl
+curl --location 'localhost:4001/admin/edituser' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFhMGY4ZDNhNmZiMTM1NTA5YjRiIiwiZW1haWwiOiIxQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MjM1MzAwMywiZXhwIjoxNjgyMzcxMDAzfQ.PFScaDZhPwOfPmwUqjYNJDhQrZc-FMNn0bNPq9rM-mk' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "userid": "644396061316b97e6e2c38f1",
+    "email": "ravi1@gmail.com",
+    "firstName":"Ravianand",
+    "lastName":"Anand",
+    "role": "admin"
+}'
+```
+
 #### Create Group
 
 ```https
@@ -134,6 +178,15 @@ curl --location 'localhost:4001/api/login' \
 | `groupname` | `string` | **Required**. Group name |
 | `createdby` | `string` | **Required**. User ID  |
 
+```curl
+curl --location 'localhost:4001/group/creategroup' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFiNTg5ZTkyZGYwNDc1MTA3YWY1IiwiZW1haWwiOiIyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjgyMzUzMDM1LCJleHAiOjE2ODIzNzEwMzV9.y6c51V9QEITeGnO0a0ZCB0uzLbvlpLodWmDB77PO6zg' \
+--header 'Content-Type: application/json' \
+--data '{
+    "groupname": "Test Group 2",
+    "createdby": "6446ab589e92df0475107af5"
+}'
+```
 #### Add user to Group
 
 ```https
@@ -145,6 +198,16 @@ curl --location 'localhost:4001/api/login' \
 | `groupid` | `string` | **Required**. Group ID |
 | `userid` | `string` | **Required**. User ID  |
 
+```curl
+curl --location 'localhost:4001/group/addgroupmember' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFiNTg5ZTkyZGYwNDc1MTA3YWY1IiwiZW1haWwiOiIyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjgyMzUzMDM1LCJleHAiOjE2ODIzNzEwMzV9.y6c51V9QEITeGnO0a0ZCB0uzLbvlpLodWmDB77PO6zg' \
+--header 'Content-Type: application/json' \
+--data '{
+    "groupid": "6446b34e48d6fab3c7a92722",
+    "userid": "6446aa0f8d3a6fb135509b4b"
+}'
+```
+
 #### Get Group Member
 
 ```https
@@ -154,6 +217,15 @@ curl --location 'localhost:4001/api/login' \
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `groupid` | `string` | **Required**. Group ID |
+
+```curl
+curl --location 'localhost:4001/group/getgroupmember' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFiNTg5ZTkyZGYwNDc1MTA3YWY1IiwiZW1haWwiOiIyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjgyMzUzMDM1LCJleHAiOjE2ODIzNzEwMzV9.y6c51V9QEITeGnO0a0ZCB0uzLbvlpLodWmDB77PO6zg' \
+--header 'Content-Type: application/json' \
+--data '{
+    "groupid": "6446b34e48d6fab3c7a92722"
+}'
+```
 
 #### Send Message
 
@@ -167,6 +239,17 @@ curl --location 'localhost:4001/api/login' \
 | `message` | `string` | **Required**. Message |
 | `userid` | `string` | **Required**. User id |
 
+```curl
+curl --location 'localhost:4001/group/sendmessage' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFiNTg5ZTkyZGYwNDc1MTA3YWY1IiwiZW1haWwiOiIyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjgyMzUzMDM1LCJleHAiOjE2ODIzNzEwMzV9.y6c51V9QEITeGnO0a0ZCB0uzLbvlpLodWmDB77PO6zg' \
+--header 'Content-Type: application/json' \
+--data '{
+    "groupid": "6446b34e48d6fab3c7a92722",
+    "userid": "6446aa0f8d3a6fb135509b4b",
+    "message": "Hello"
+}'
+```
+
 #### Get Message
 
 ```https
@@ -177,6 +260,15 @@ curl --location 'localhost:4001/api/login' \
 | :-------- | :------- | :------------------------- |
 | `groupid` | `string` | **Required**. Group ID |
 
+```curl
+curl --location 'localhost:4001/group/getgroupmessage' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFiNTg5ZTkyZGYwNDc1MTA3YWY1IiwiZW1haWwiOiIyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjgyMzUzMDM1LCJleHAiOjE2ODIzNzEwMzV9.y6c51V9QEITeGnO0a0ZCB0uzLbvlpLodWmDB77PO6zg' \
+--header 'Content-Type: application/json' \
+--data '{
+    "groupid": "6446b34e48d6fab3c7a92722"
+}'
+```
+
 #### Get Group List
 
 ```https
@@ -186,6 +278,36 @@ curl --location 'localhost:4001/api/login' \
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `userid` | `string` | **Required**. User id |
+
+```curl
+curl --location 'localhost:4001/group/getgrouplist' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFiNTg5ZTkyZGYwNDc1MTA3YWY1IiwiZW1haWwiOiIyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjgyMzUzMDM1LCJleHAiOjE2ODIzNzEwMzV9.y6c51V9QEITeGnO0a0ZCB0uzLbvlpLodWmDB77PO6zg' \
+--header 'Content-Type: application/json' \
+--data '{
+   "userid": "6446aa0f8d3a6fb135509b4b"
+}'
+```
+
+#### Like Message
+
+```https
+    POST /group/likemessage
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `userid` | `string` | **Required**. User id |
+| `messageid` | `string` | **Required**. Message id |
+
+```curl
+curl --location 'localhost:4001/group/likemessage' \
+--header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFiNTg5ZTkyZGYwNDc1MTA3YWY1IiwiZW1haWwiOiIyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjgyMzUzMDM1LCJleHAiOjE2ODIzNzEwMzV9.y6c51V9QEITeGnO0a0ZCB0uzLbvlpLodWmDB77PO6zg' \
+--header 'Content-Type: application/json' \
+--data '{
+    "messageid": "6446b43848d6fab3c7a9272d",
+    "userid": "6446aa0f8d3a6fb135509b4b"
+}'
+```
 
 ## Response Format
 
