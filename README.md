@@ -178,6 +178,40 @@ Package used.
 | :-------- | :------- | :------------------------- |
 | `userid` | `string` | **Required**. User id |
 
+## Response Format
+
+### Succesful
+```json
+{
+    "code": 200,
+    "status": "Successful",
+    "message": "",
+    "data": {},
+    "endpoint": "/api/register"
+}
+
+```
+### Failuer or Conflict
+```json
+{
+    "code": 400,
+    "status": "Bad Request",
+    "message": "All input is required: firstName, lastName, email, password, role",
+    "data": {},
+    "endpoint": "/api/register"
+}
+```
+### Server Error
+```json
+{
+    "code": 500,
+    "status": "Failed",
+    "message": "Something Went wrong",
+    "data": {},
+    "endpoint": "/api/register"
+}
+```
+
 ## DB Collection
 
 ### users

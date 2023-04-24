@@ -14,8 +14,8 @@ routerlist.route("/login").post(authController.login);
 
 
 // group controller
-routerlist.route("/admin/createGroup").post(auth('adminrights'), groupController.createGroup);
-routerlist.route("/addGroupMember").post(auth('adminrights'), groupController.addGroupMember);
+// routerlist.route("/admin/createGroup").post(auth('adminrights'), groupController.createGroup);
+// routerlist.route("/addGroupMember").post(auth('adminrights'), groupController.addGroupMember);
 
 // message Controller
 // routerlist.route("/getgroupmessage").post(messageController.GetGroupMessage);

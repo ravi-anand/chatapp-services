@@ -63,8 +63,6 @@ const edituser = async (req, res) => {
     }
 
     const oldUser = await User.findOne({ email });
-    // console.log(oldUser, userid);
-    console.log(oldUser._id.toString(), userid);
     if (oldUser && oldUser._id.toString() !== userid) {
       let response = await resObject.responseobject(409,"/admin/edituser", "User Email Already Exist. Please use new Email", {})
       return res.status(409).json(response);

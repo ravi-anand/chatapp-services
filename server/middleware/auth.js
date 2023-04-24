@@ -5,9 +5,8 @@ const config = process.env;
 var adminrights = ['admin']
 var normalrights =['user']
 var allrights = ['admin', 'user']
-const verifyToken = (...userrights) => async (req, res, next) => {
-  const token = req.headers['Authorization'] || req.body.token || req.query.token || req.headers["x-access-token"];
-
+const verifyToken = (userrights) => async (req, res, next) => {
+  const token = req.headers['authorization'] || req.body.token || req.query.token || req.headers["x-access-token"];
   if (!token) {
     let response = await resObject.responseobject(403,"", "A token is required for authentication", {})
     return res.status(403).json(response);
@@ -16,11 +15,12 @@ const verifyToken = (...userrights) => async (req, res, next) => {
     let accessrights = (userrights === 'adminrights') ? adminrights : (userrights === 'normalrights') ? normalrights : allrights;
     const decoded = jwt.verify(token, config.TOKEN_KEY);
     if(!accessrights.includes(decoded.role)) {
-      let response = await resObject.responseobject(403,"", "Unauthorized", {})
+      let response = await resObject.responseobject(403,"", "Unauthorized. You are not authorized to access api.", {})
       return res.status(403).json(response);
     }
     req.user = decoded;
   } catch (err) {
+    console.log(err);
     let response = await resObject.responseobject(401,"", "Invalid Token", {})
     return res.status(401).json(response);
   }

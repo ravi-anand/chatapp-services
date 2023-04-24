@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "906b97ea-e015-4247-9ee7-8afe715e553b",
+		"name": "Riktam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13314444"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"User2\",\r\n    \"lastName\": \"2\",\r\n    \"email\": \"3@gmail.com\",\r\n    \"password\": \"1234\",\r\n    \"role\": \"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}api/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"2@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "admin/createuser",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{admin_toke}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"firstName\": \"Ravi\",\r\n    \"lastName\": \"Anand\",\r\n    \"email\": \"user4@gmail.com\",\r\n    \"password\": \"1234\",\r\n    \"role\": \"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}admin/createuser"
+			},
+			"response": []
+		},
+		{
+			"name": "admin/edituser",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{admin_toke}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\": \"644396061316b97e6e2c38f1\",\r\n    \"email\": \"ravi1@gmail.com\",\r\n    \"firstName\":\"Ravianand\",\r\n    \"lastName\":\"Anand\",\r\n    \"role\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}admin/edituser"
+			},
+			"response": []
+		},
+		{
+			"name": "group/createGroup",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{normal_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"groupname\": \"Test Group 2\",\r\n    \"createdby\": \"6446ab589e92df0475107af5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}group/creategroup"
+			},
+			"response": []
+		},
+		{
+			"name": "group/addgroupmember",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{normal_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"groupid\": \"6446b34e48d6fab3c7a92722\",\r\n    \"userid\": \"6446aa0f8d3a6fb135509b4b\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}group/addgroupmember"
+			},
+			"response": []
+		},
+		{
+			"name": "group/getgroupmember",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{normal_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"groupid\": \"6446b34e48d6fab3c7a92722\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}group/getgroupmember"
+			},
+			"response": []
+		},
+		{
+			"name": "group/sendmessage",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{normal_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"groupid\": \"6446b34e48d6fab3c7a92722\",\r\n    \"userid\": \"6446aa0f8d3a6fb135509b4b\",\r\n    \"message\": \"Hello\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}group/sendmessage"
+			},
+			"response": []
+		},
+		{
+			"name": "group/getgroupmessage",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{normal_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"groupid\": \"6446b34e48d6fab3c7a92722\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}group/getgroupmessage"
+			},
+			"response": []
+		},
+		{
+			"name": "group/getgrouplist",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{normal_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"userid\": \"6446aa0f8d3a6fb135509b4b\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseurl}}group/getgrouplist"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "{{baseurl}}",
+			"value": "localhost:4001/",
+			"type": "string"
+		},
+		{
+			"key": "baseurl",
+			"value": "localhost:4001/"
+		},
+		{
+			"key": "admin_toke",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFhMGY4ZDNhNmZiMTM1NTA5YjRiIiwiZW1haWwiOiIxQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MjM1MzAwMywiZXhwIjoxNjgyMzcxMDAzfQ.PFScaDZhPwOfPmwUqjYNJDhQrZc-FMNn0bNPq9rM-mk",
+			"type": "string"
+		},
+		{
+			"key": "normal_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0NmFiNTg5ZTkyZGYwNDc1MTA3YWY1IiwiZW1haWwiOiIyQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjgyMzUzMDM1LCJleHAiOjE2ODIzNzEwMzV9.y6c51V9QEITeGnO0a0ZCB0uzLbvlpLodWmDB77PO6zg",
+			"type": "string"
+		}
+	]
+}

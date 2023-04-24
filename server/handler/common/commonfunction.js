@@ -40,7 +40,16 @@ const responseobject = async (code, endpoint, message, data) => {
           endpoint: endpoint,
         };
         break;
-      case 403:
+      case 401:
+        res = {
+          code: code,
+          status: "Unauthorized",
+          message: resMessage,
+          data: resdata,
+          endpoint: endpoint,
+        };
+        break;  
+        case 403:
         res = {
           code: code,
           status: "Conflict",
@@ -62,7 +71,7 @@ const responseobject = async (code, endpoint, message, data) => {
         res = {
           code: 500,
           status: "Failed",
-          message: "Something Went wrong",
+          message: resMessage,
           data: resdata,
           endpoint: endpoint,
         };
