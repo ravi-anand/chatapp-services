@@ -76,6 +76,15 @@ Package used.
 | `email`      | `string` | **Required**. Email |
 | `password`      | `string` | **Required**. Password |
 
+```curl
+curl --location 'localhost:4001/api/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "2@gmail.com",
+    "password": "1234"
+}'
+```
+
 #### Get User List
 
 ```https
