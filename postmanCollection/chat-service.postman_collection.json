@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "906b97ea-e015-4247-9ee7-8afe715e553b",
-		"name": "Riktam",
+		"name": "chat-service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "13314444"
 	},

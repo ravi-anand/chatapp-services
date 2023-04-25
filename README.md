@@ -27,6 +27,11 @@ To Start Server
 npm start
 ```
 
+To Test using Python
+```python
+py .\testscriptPython\chat-service-test.py
+```
+
 ## Technology Stack
 
 Tech Stack used.
@@ -35,6 +40,11 @@ Tech Stack used.
 | `Node.js`      | Node.js Version 14              | 
 | `Express`       | Express Server                    | 
 | `Mongo DB` | Database used | 
+
+Testing
+| Technology | Description                               | 
+|------------|-------------------------------------------|
+| `Python`      | Python Version 3              | 
 
 ## Package List
 
@@ -391,5 +401,41 @@ curl --location 'localhost:4001/group/likemessage' \
 | `likestatus` | 
 | `userid` | 
 | `createdat` | 
+
+## Project Structure
+
+```
+chatapp-services
+├─ package-lock.json
+├─ package.json
+├─ postmanCollection
+│  └─ chat-service.postman_collection.json
+├─ README.md
+├─ server
+│  ├─ app.js
+│  ├─ config
+│  │  └─ database.js
+│  ├─ handler
+│  │  ├─ common
+│  │  │  └─ commonfunction.js
+│  │  └─ controller
+│  │     ├─ admin.controller.js
+│  │     ├─ auth.controller.js
+│  │     ├─ group.controller.js
+│  │     ├─ message.controller.js
+│  │     └─ user.controller.js
+│  ├─ index.js
+│  ├─ middleware
+│  │  └─ auth.js
+│  └─ model
+│     ├─ grouplike.js
+│     ├─ groupmaster.js
+│     ├─ groupmembers.js
+│     ├─ groupmessage.js
+│     └─ user.js
+└─ testscriptPython
+   └─ chat-service-test.py
+
+```
 
 ## Further inprovement
